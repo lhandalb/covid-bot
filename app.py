@@ -61,20 +61,20 @@ def bot():
         if r.status_code == 200:
             try:
                 data = r.json()
+                fatality_rate = 'N/A'
+                recovery_rate = 'N/A'
+                if data["cases"]:
+                    if data["deaths"]:
+                        fatality_rate = round((100 * data["deaths"]/data["cases"]), 2)
+                    if data["recovered"]:
+                        recovery_rate = round((100 * data["recovered"]/data["cases"]), 2)
+
                 for key in data:
                     if not data[key]:
                         data[key] = 'N/A'
                     elif type(data[key]) == int:
                         data[key] = f'{data[key]:,d}'
 
-                fatality_rate = 'N/A'
-                recovery_rate = 'N/A'
-
-                if data["cases"] != 'N/A':
-                    if data["deaths"] != 'N/A':
-                        fatality_rate = round((100 * data["deaths"]/data["cases"]), 2)
-                    if data["recovered"] != 'N/A':
-                        recovery_rate = round((100 * data["recovered"]/data["cases"]), 2)
 
                 text = f'_{data["country"]} Covid-19 Report_ \n\nConfirmed Cases: *{data["cases"]}*\nToday Cases: *{data["todayCases"]}*\nDeaths: *{data["deaths"]}*\nRecovered: *{data["recovered"]}*\nActive: *{data["active"]}*\nCritical: *{data["critical"]}*\nTotal tests: *{data["totalTests"]}*\n\nCases per Million: *{data["casesPerOneMillion"]}*\nDeaths per Million: *{data["deathsPerOneMillion"]}*\nTests per Million: *{data["testsPerOneMillion"]}*\n\nFatality rate: *{fatality_rate}%*\nRecovery rate: *{recovery_rate}%*'
             except Exception as e:
