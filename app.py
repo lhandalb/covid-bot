@@ -15,7 +15,7 @@ def bot():
     text = ""
     menu_txt = '\n\nSend a *country name*, or *global*, for the latest report\nSend *symptoms* to learn how the virus spreads\nSend *prevent* to see how to prevent the disease'
 
-    if 'hi' in incoming_msg or 'hey' in incoming_msg:
+    if 'hi' == incoming_msg or 'hey' == incoming_msg or 'hello' == incoming_msg or 'hola' == incoming_msg:
         text = 'Hey! \nThis is Ms Rona with the latest COVID-19 updates. How can I help you?'
         msg.body(text + menu_txt)
 
