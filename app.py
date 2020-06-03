@@ -65,9 +65,9 @@ def bot():
                 recovery_rate = 'N/A'
                 if data["cases"]:
                     if data["deaths"]:
-                        fatality_rate = round((100 * data["deaths"]/data["cases"]), 2)
+                        fatality_rate = f'{100 * data["deaths"]/data["cases"], .2f}%'
                     if data["recovered"]:
-                        recovery_rate = round((100 * data["recovered"]/data["cases"]), 2)
+                        recovery_rate = f'{100 * data["recovered"]/data["cases"]), .2f)}%'
 
                 for key in data:
                     if not data[key]:
@@ -76,7 +76,7 @@ def bot():
                         data[key] = f'{data[key]:,d}'
 
 
-                text = f'_{data["country"]} Covid-19 Report_ \n\nConfirmed Cases: *{data["cases"]}*\nToday Cases: *{data["todayCases"]}*\nDeaths: *{data["deaths"]}*\nRecovered: *{data["recovered"]}*\nActive: *{data["active"]}*\nCritical: *{data["critical"]}*\nTotal tests: *{data["totalTests"]}*\n\nCases per Million: *{data["casesPerOneMillion"]}*\nDeaths per Million: *{data["deathsPerOneMillion"]}*\nTests per Million: *{data["testsPerOneMillion"]}*\n\nFatality rate: *{fatality_rate}%*\nRecovery rate: *{recovery_rate}%*'
+                text = f'_{data["country"]} Covid-19 Report_ \n\nConfirmed Cases: *{data["cases"]}*\nToday Cases: *{data["todayCases"]}*\nDeaths: *{data["deaths"]}*\nRecovered: *{data["recovered"]}*\nActive: *{data["active"]}*\nCritical: *{data["critical"]}*\nTotal tests: *{data["totalTests"]}*\n\nCases per Million: *{data["casesPerOneMillion"]}*\nDeaths per Million: *{data["deathsPerOneMillion"]}*\nTests per Million: *{data["testsPerOneMillion"]}*\n\nFatality rate: *{fatality_rate}*\nRecovery rate: *{recovery_rate}*'
             except Exception as e:
                 text = f'I could not retrieve the results for {incoming_msg} at this time, sorry.'
         else:
