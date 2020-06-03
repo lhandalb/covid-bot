@@ -65,9 +65,9 @@ def bot():
                 recovery_rate = 'N/A'
                 if data["cases"]:
                     if data["deaths"]:
-                        fatality_rate = f'{100 * data["deaths"]/data["cases"], .2f}%'
+                        fatality_rate = f'{round((100 * data["deaths"]/data["cases"]), 2)}%'
                     if data["recovered"]:
-                        recovery_rate = f'{100 * data["recovered"]/data["cases"]), .2f)}%'
+                        recovery_rate = f'{round((100 * data["recovered"]/data["cases"]), 2)}%'
 
                 for key in data:
                     if not data[key]:
